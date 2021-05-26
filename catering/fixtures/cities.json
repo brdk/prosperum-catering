@@ -1,0 +1,23 @@
+[
+  {
+    "model": "catering.city",
+    "pk": 1,
+    "fields": {
+      "name": "Berlin"
+    }
+  },
+  {
+    "model": "catering.city",
+    "pk": 2,
+    "fields": {
+      "name": "Munich"
+    }
+  },
+  {
+    "model": "catering.city",
+    "pk": 3,
+    "fields": {
+      "name": "Stuttgart"
+    }
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "model": "catering.restauranttype",
+    "pk": 1,
+    "fields": {
+      "name": "Bavarian"
+    }
+  },
+  {
+    "model": "catering.restauranttype",
+    "pk": 2,
+    "fields": {
+      "name": "Chinese"
+    }
+  },
+  {
+    "model": "catering.restauranttype",
+    "pk": 3,
+    "fields": {
+      "name": "Italian"
+    }
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "model": "catering.ingredient",
+    "pk": 1,
+    "fields": {
+      "name": "Potato",
+      "type": "Vegan",
+      "price_per_portion": 50,
+      "total_amount": 10
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 2,
+    "fields": {
+      "name": "Cucumber",
+      "type": "Vegan",
+      "price_per_portion": 40,
+      "total_amount": 12
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 3,
+    "fields": {
+      "name": "Tomato",
+      "type": "Vegetarian",
+      "price_per_portion": 65,
+      "total_amount": 8
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 4,
+    "fields": {
+      "name": "Pork Steak",
+      "type": "Pork",
+      "price_per_portion": 200,
+      "total_amount": 4
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 5,
+    "fields": {
+      "name": "Steak",
+      "type": "Beef",
+      "price_per_portion": 400,
+      "total_amount": 5
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 6,
+    "fields": {
+      "name": "Wing",
+      "type": "Chicken",
+      "price_per_portion": 110,
+      "total_amount": 17
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 7,
+    "fields": {
+      "name": "Onion",
+      "type": "Vegetarian",
+      "price_per_portion": 10,
+      "total_amount": 45
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 8,
+    "fields": {
+      "name": "Water",
+      "type": "Vegan",
+      "price_per_portion": 5,
+      "total_amount": 120
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 9,
+    "fields": {
+      "name": "Tonic",
+      "type": "Vegetarian",
+      "price_per_portion": 100,
+      "total_amount": 12
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 10,
+    "fields": {
+      "name": "Jin",
+      "type": "Vegetarian",
+      "price_per_portion": 500,
+      "total_amount": 7
+    }
+  },
+  {
+    "model": "catering.ingredient",
+    "pk": 11,
+    "fields": {
+      "name": "Vinegar",
+      "type": "Vegetarian",
+      "price_per_portion": 5,
+      "total_amount": 70
+    }
+  }
+]

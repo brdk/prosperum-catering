@@ -1,0 +1,60 @@
+[
+  {
+    "model": "catering.portion",
+    "pk": 1,
+    "fields": {
+      "name": "Beef stake with vegetables",
+      "ingredients": [1, 3, 5]
+    }
+  },
+  {
+    "model": "catering.portion",
+    "pk": 2,
+    "fields": {
+      "name": "Hot Chicken Wings with pommes",
+      "ingredients": [1, 6]
+    }
+  },
+  {
+    "model": "catering.portion",
+    "pk": 3,
+    "fields": {
+      "name": "Schweinebraten",
+      "ingredients": [1, 4]
+    }
+  },
+  {
+    "model": "catering.portion",
+    "pk": 4,
+    "fields": {
+      "name": "Bottle of water",
+      "ingredients": [8],
+      "is_beverage": true
+    }
+  },
+  {
+    "model": "catering.portion",
+    "pk": 5,
+    "fields": {
+      "name": "Jin Tonic",
+      "ingredients": [2, 9, 10],
+      "is_beverage": true
+    }
+  },
+  {
+    "model": "catering.portion",
+    "pk": 6,
+    "fields": {
+      "name": "Potato salad",
+      "ingredients": [1, 11]
+    }
+  },
+  {
+    "model": "catering.portion",
+    "pk": 7,
+    "fields": {
+      "name": "Vegetable salad",
+      "ingredients": [2, 3, 7]
+    }
+  }
+]
