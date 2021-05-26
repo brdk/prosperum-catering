@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Potato",
-      "type": "Vegan",
+      "type": "VEGAN",
       "price_per_portion": 50,
       "total_amount": 10
     }
@@ -14,7 +14,7 @@
     "pk": 2,
     "fields": {
       "name": "Cucumber",
-      "type": "Vegan",
+      "type": "VEGAN",
       "price_per_portion": 40,
       "total_amount": 12
     }
@@ -24,7 +24,7 @@
     "pk": 3,
     "fields": {
       "name": "Tomato",
-      "type": "Vegetarian",
+      "type": "VEGETARIAN",
       "price_per_portion": 65,
       "total_amount": 8
     }
@@ -34,7 +34,7 @@
     "pk": 4,
     "fields": {
       "name": "Pork Steak",
-      "type": "Pork",
+      "type": "PORK",
       "price_per_portion": 200,
       "total_amount": 4
     }
@@ -44,7 +44,7 @@
     "pk": 5,
     "fields": {
       "name": "Steak",
-      "type": "Beef",
+      "type": "BEEF",
       "price_per_portion": 400,
       "total_amount": 5
     }
@@ -54,7 +54,7 @@
     "pk": 6,
     "fields": {
       "name": "Wing",
-      "type": "Chicken",
+      "type": "CHICKEN",
       "price_per_portion": 110,
       "total_amount": 17
     }
@@ -64,7 +64,7 @@
     "pk": 7,
     "fields": {
       "name": "Onion",
-      "type": "Vegetarian",
+      "type": "VEGETARIAN",
       "price_per_portion": 10,
       "total_amount": 45
     }
@@ -74,7 +74,7 @@
     "pk": 8,
     "fields": {
       "name": "Water",
-      "type": "Vegan",
+      "type": "VEGAN",
       "price_per_portion": 5,
       "total_amount": 120
     }
@@ -84,7 +84,7 @@
     "pk": 9,
     "fields": {
       "name": "Tonic",
-      "type": "Vegetarian",
+      "type": "VEGETARIAN",
       "price_per_portion": 100,
       "total_amount": 12
     }
@@ -94,7 +94,7 @@
     "pk": 10,
     "fields": {
       "name": "Jin",
-      "type": "Vegetarian",
+      "type": "VEGETARIAN",
       "price_per_portion": 500,
       "total_amount": 7
     }
@@ -104,7 +104,7 @@
     "pk": 11,
     "fields": {
       "name": "Vinegar",
-      "type": "Vegetarian",
+      "type": "VEGETARIAN",
       "price_per_portion": 5,
       "total_amount": 70
     }
