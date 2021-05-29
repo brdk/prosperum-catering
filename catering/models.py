@@ -51,7 +51,7 @@ class Portion(models.Model):
     ingredients = models.ManyToManyField(Ingredient)
     is_beverage = models.BooleanField(default=False)
 
-    @property
+    @cached_property
     def price(self):
         return sum([ingredient.price_per_portion for ingredient in self.ingredients.all()]) * settings.MARGIN_MULTIPLIER
 
@@ -115,7 +115,7 @@ class Order(models.Model):
 
 class OrderedPortion(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='ordered_portions')
-    portion = models.ForeignKey(Portion, on_delete=models.CASCADE)
+    portion = models.ForeignKey(Portion, on_delete=models.CASCADE, related_name='ordered_portions')
     amount = models.PositiveSmallIntegerField()
 
     @property

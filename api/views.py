@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser
@@ -32,7 +33,19 @@ class IngredientViewSet(ModelViewSet):
 class PortionViewSet(ModelViewSet):
     queryset = Portion.objects.all()
     serializer_class = PortionSerializer
+    filter_class = filters.PortionFilter
     permission_classes = [IsAdminUser]
+
+    @action(detail=False, url_path='top(/(?P<limit>[0-9]+))?', methods=['get'])
+    def total_orders(self, request, *args, **kwargs):
+        limit = kwargs.get('limit')
+        portions = self.filter_queryset(self.queryset)
+        portions = portions.annotate(ordered_times=Sum('ordered_portions__amount')).order_by('-ordered_times')
+        if limit:
+            limit = int(limit)
+            portions = portions[:limit]
+        data = self.serializer_class(portions, many=True).data
+        return Response(data)
 
 
 class RestaurantViewSet(ModelViewSet):
