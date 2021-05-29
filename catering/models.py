@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.functional import cached_property
 
 
 @enum.unique
@@ -104,7 +105,7 @@ class Order(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.PROTECT)
     date = models.DateTimeField(auto_now_add=True)
 
-    @property
+    @cached_property
     def total_price(self):
         return sum([portion.price for portion in self.ordered_portions.all()])
 
