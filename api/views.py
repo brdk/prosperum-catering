@@ -1,6 +1,10 @@
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from api import filters
 from api.serializers import (
     CitySerializer, RestaurantTypeSerializer, IngredientSerializer, PortionSerializer,
     RestaurantSerializer, GuestSerializer, OrderSerializer)
@@ -46,4 +50,14 @@ class GuestViewSet(ModelViewSet):
 class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_class = filters.OrderFilter
     permission_classes = [IsAdminUser]
+
+    @action(detail=False, url_path='total', methods=['get'])
+    def total_orders(self, request, *args, **kwargs):
+        orders = self.filter_queryset(self.queryset)
+        data = {
+            'total': orders.count()
+        }
+        return Response(data)

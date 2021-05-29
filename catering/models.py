@@ -1,4 +1,5 @@
 import enum
+import functools
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -54,13 +55,8 @@ class Portion(models.Model):
     def price(self):
         return sum([ingredient.price_per_portion for ingredient in self.ingredients.all()]) * settings.MARGIN_MULTIPLIER
 
-    @property
-    def is_vegetarian(self):
-        return all([ingredient.type == IngredientType.VEGETARIAN for ingredient in self.ingredients.all()])
-
-    @property
-    def is_vegan(self):
-        return all([ingredient.type == IngredientType.VEGAN for ingredient in self.ingredients.all()])
+    def cooked_only_with(self, ingredient_type):
+        return all([ingredient.type.lower() == ingredient_type.lower() for ingredient in self.ingredients.all()])
 
     def __str__(self):
         return self.name
@@ -108,6 +104,10 @@ class Order(models.Model):
     @cached_property
     def total_price(self):
         return sum([portion.price for portion in self.ordered_portions.all()])
+
+    @functools.cache
+    def is_dish_type(self, dish_type):
+        return all([portion.portion.cooked_only_with(dish_type) for portion in self.ordered_portions.all()])
 
     def __str__(self):
         return f'Order for {self.guest.get_full_name()} in {self.restaurant} for {self.total_price}'
