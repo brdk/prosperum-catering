@@ -102,6 +102,7 @@ class Guest(models.Model):
 class Order(models.Model):
     guest = models.ForeignKey(User, on_delete=models.PROTECT)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.PROTECT)
+    date = models.DateTimeField(auto_now_add=True)
 
     @property
     def total_price(self):
