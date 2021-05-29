@@ -26,4 +26,4 @@ class OrderFilter(filters.FilterSet):
 
     class Meta:
         model = Order
-        fields = ['restaurant', 'dish_name', 'date', 'price_min', 'price_max']
+        fields = ['restaurant', 'dish_name', 'date', 'price_min', 'price_max', 'dish_type']
