@@ -165,3 +165,6 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+CELERY_ACCEPT_CONTENT = ['json', 'pickle']
+BROKER_URL = 'amqp://localhost'
