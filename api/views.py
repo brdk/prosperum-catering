@@ -9,7 +9,7 @@ from api import filters
 from api.serializers import (
     CitySerializer, RestaurantTypeSerializer, IngredientSerializer, PortionSerializer,
     RestaurantSerializer, GuestSerializer, OrderSerializer)
-from catering.models import City, RestaurantType, Ingredient, Portion, Restaurant, Guest, Order
+from catering.models import City, RestaurantType, Ingredient, Portion, Restaurant, Guest, Order, OutOfStockError
 from catering.tasks import notify_guests
 
 
@@ -88,6 +88,12 @@ class OrderViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filter_class = filters.OrderFilter
     permission_classes = [IsAdminUser]
+
+    def create(self, request, *args, **kwargs):
+        try:
+            return super().create(request, *args, **kwargs)
+        except OutOfStockError as e:
+            return Response({'message': str(e)}, status=400)
 
     @action(detail=False, url_path='total', methods=['get'])
     def total_orders(self, request, *args, **kwargs):

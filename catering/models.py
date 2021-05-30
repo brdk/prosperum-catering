@@ -5,7 +5,12 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import F
 from django.utils.functional import cached_property
+
+
+class OutOfStockError(Exception):
+    pass
 
 
 @enum.unique
@@ -123,6 +128,22 @@ class OrderedPortion(models.Model):
     portion = models.ForeignKey(Portion, on_delete=models.CASCADE, related_name='ordered_portions')
     amount = models.PositiveSmallIntegerField()
 
+    def check_ingredients_availability(self):
+        from .tasks import notify_owner
+        out_of_stock = self.portion.ingredients.filter(total_amount__lt=self.amount)
+        if out_of_stock.exists():
+            notify_owner.delay(
+                self.order.restaurant_id,
+                list(out_of_stock.values_list('id', flat=True))
+            )
+            raise OutOfStockError('Some ingredients are out of stock')
+
     @property
     def price(self):
         return self.portion.price * self.amount
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if not self.pk:
+            self.check_ingredients_availability()
+        super().save(force_insert, force_update, using, update_fields)
+        self.portion.ingredients.update(total_amount=F('total_amount') - self.amount)
