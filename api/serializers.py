@@ -22,6 +22,8 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class PortionSerializer(serializers.ModelSerializer):
+    price = serializers.IntegerField()
+
     class Meta:
         model = Portion
         fields = '__all__'

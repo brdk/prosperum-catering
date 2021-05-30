@@ -69,6 +69,12 @@ class RestaurantViewSet(ModelViewSet):
         data = GuestSerializer(guests, many=True).data
         return Response(data)
 
+    @action(detail=True, url_path='menu', methods=['get'])
+    def get_menu(self, request, *args, **kwargs):
+        portions = filters.PortionFilter(data=request.GET, queryset=self.get_object().menu).qs
+        data = PortionSerializer(portions, many=True).data
+        return Response(data)
+
 
 class GuestViewSet(ModelViewSet):
     queryset = Guest.objects.all()
