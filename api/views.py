@@ -54,6 +54,12 @@ class RestaurantViewSet(ModelViewSet):
     serializer_class = RestaurantSerializer
     permission_classes = [IsAdminUser]
 
+    @action(detail=True, url_path='guests', methods=['get'])
+    def get_guests(self, request, *args, **kwargs):
+        guests = Guest.objects.filter(user__orders__restaurant_id=kwargs['pk'])
+        data = GuestSerializer(guests, many=True).data
+        return Response(data)
+
     @action(detail=True, url_path='guests/notify/(?P<date>[0-9-]+)', methods=['get'])
     def notify_guests(self, request, *args, **kwargs):
         notify_guests(kwargs['pk'], kwargs['date'])
