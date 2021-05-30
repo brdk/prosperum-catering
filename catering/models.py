@@ -97,7 +97,7 @@ class Guest(models.Model):
 
 
 class Order(models.Model):
-    guest = models.ForeignKey(User, on_delete=models.PROTECT, related_name='orders')
+    guest = models.ForeignKey(Guest, on_delete=models.PROTECT, related_name='orders')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.PROTECT, related_name='guest_orders')
     date = models.DateTimeField(auto_now_add=True)
 
@@ -110,7 +110,7 @@ class Order(models.Model):
         return all([portion.portion.cooked_only_with(dish_type) for portion in self.ordered_portions.all()])
 
     def __str__(self):
-        return f'Order for {self.guest.get_full_name()} in {self.restaurant} for {self.total_price}'
+        return f'Order for {self.guest.user.get_full_name()} in {self.restaurant} for {self.total_price}'
 
 
 class OrderedPortion(models.Model):

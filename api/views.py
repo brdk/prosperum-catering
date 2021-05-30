@@ -56,7 +56,7 @@ class RestaurantViewSet(ModelViewSet):
 
     @action(detail=True, url_path='guests', methods=['get'])
     def get_guests(self, request, *args, **kwargs):
-        guests = Guest.objects.filter(user__orders__restaurant_id=kwargs['pk'])
+        guests = Guest.objects.filter(orders__restaurant_id=kwargs['pk'])
         data = GuestSerializer(guests, many=True).data
         return Response(data)
 
@@ -64,8 +64,8 @@ class RestaurantViewSet(ModelViewSet):
     def notify_guests(self, request, *args, **kwargs):
         notify_guests(kwargs['pk'], kwargs['date'])
 
-        guests = Guest.objects.filter(user__orders__restaurant__pk=kwargs['pk'],
-                                      user__orders__date__date=kwargs['date'])
+        guests = Guest.objects.filter(orders__restaurant__pk=kwargs['pk'],
+                                      orders__date__date=kwargs['date'])
         data = GuestSerializer(guests, many=True).data
         return Response(data)
 
