@@ -90,7 +90,7 @@ class Restaurant(models.Model):
 class Guest(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
     address = models.CharField(max_length=100)
-    visit_time = models.DateTimeField()
+    visit_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.user.get_full_name()} visited on {self.visit_time}'
