@@ -10,6 +10,7 @@ from api.serializers import (
     CitySerializer, RestaurantTypeSerializer, IngredientSerializer, PortionSerializer,
     RestaurantSerializer, GuestSerializer, OrderSerializer)
 from catering.models import City, RestaurantType, Ingredient, Portion, Restaurant, Guest, Order
+from catering.tasks import notify_guests
 
 
 class CityViewSet(ModelViewSet):
@@ -52,6 +53,15 @@ class RestaurantViewSet(ModelViewSet):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
     permission_classes = [IsAdminUser]
+
+    @action(detail=True, url_path='guests/notify/(?P<date>[0-9-]+)', methods=['get'])
+    def notify_guests(self, request, *args, **kwargs):
+        notify_guests(kwargs['pk'], kwargs['date'])
+
+        guests = Guest.objects.filter(user__orders__restaurant__pk=kwargs['pk'],
+                                      user__orders__date__date=kwargs['date'])
+        data = GuestSerializer(guests, many=True).data
+        return Response(data)
 
 
 class GuestViewSet(ModelViewSet):
