@@ -97,8 +97,8 @@ class Guest(models.Model):
 
 
 class Order(models.Model):
-    guest = models.ForeignKey(User, on_delete=models.PROTECT)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.PROTECT)
+    guest = models.ForeignKey(User, on_delete=models.PROTECT, related_name='orders')
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.PROTECT, related_name='guest_orders')
     date = models.DateTimeField(auto_now_add=True)
 
     @cached_property
