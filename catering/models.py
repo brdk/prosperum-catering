@@ -62,7 +62,12 @@ class Portion(models.Model):
         return self.name
 
 
+class Owner(models.Model):
+    user = models.OneToOneField(User, on_delete=models.PROTECT)
+
+
 class Restaurant(models.Model):
+    owner = models.ForeignKey(Owner, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.PROTECT)
     type = models.ForeignKey(RestaurantType, on_delete=models.PROTECT)
